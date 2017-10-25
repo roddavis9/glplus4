@@ -1,0 +1,11 @@
+{
+  "name": "glplus4",
+  "version": "1.0.0",
+  "description": "Grocery List Plus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rod Davis",
+  "license": "MIT"
+}
