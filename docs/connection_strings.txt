@@ -1,0 +1,1 @@
+connection strings:glplus_devmongodb://user_glplus_dev:pwGlplu$dev@ds059702.mongolab.com:59702/glplus_dev

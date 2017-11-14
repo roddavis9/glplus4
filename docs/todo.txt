@@ -1,0 +1,1 @@
+Fix responsive view of navbarmake page-wrapper height fit screen (chalkboard should go to bottom)we should have default items that we include for every user (we can sell these as sponsored items)
