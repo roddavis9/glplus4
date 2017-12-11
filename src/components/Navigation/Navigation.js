@@ -52,7 +52,7 @@ class Navigation extends Component {
                         <NavLink to="/groups"><i className="fa fa-users fa-lg"></i> <span className="nav-label">Groups</span></NavLink>
                     </li>
                     <li>
-                        <NavLink to="/gitems"><i className="fa fa-list-ol fa-lg"></i> <span className="nav-label">List Items</span></NavLink>
+                        <NavLink to="/history"><i className="fa fa-history fa-lg"></i> <span className="nav-label">History</span></NavLink>
                     </li>
                     <li>
                         <NavLink to="/maker"><i className="fa fa-shopping-basket fa-lg"></i> <span className="nav-label">Meal Maker</span></NavLink>
@@ -61,10 +61,13 @@ class Navigation extends Component {
                         <NavLink to="/planner"><i className="fa fa-calendar fa-lg"></i> <span className="nav-label">Meal Planner</span></NavLink>
                     </li>
                     <li>
-                        <NavLink to="/recipes"><i className="fa fa-book fa-lg"></i> <span className="nav-label">Recipes</span></NavLink>
+                        <NavLink to="/gitems"><i className="fa fa-list-ol fa-lg"></i> <span className="nav-label">My Items</span></NavLink>
                     </li>
                     <li>
-                        <NavLink to="/reports"><i className="fa fa-bar-chart fa-lg"></i> <span className="nav-label">Reports</span></NavLink>
+                        <NavLink to="/recipes"><i className="fa fa-newspaper-o fa-lg"></i> <span className="nav-label">Recipes</span></NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/reports"><i className="fa fa-line-chart fa-lg"></i> <span className="nav-label">Reports</span></NavLink>
                     </li>
                     <li>
                         <NavLink to="/search"><i className="fa fa-search fa-lg"></i> <span className="nav-label">Search</span></NavLink>

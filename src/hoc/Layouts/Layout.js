@@ -5,6 +5,7 @@ import Navigation from '../../components/Navigation/Navigation';
 import Progress from '../../components/common/Progress';
 import TopHeader from '../../components/common/TopHeader';
 
+import classes from './Layout.css';
 
 let wrapperClass = "gray-bg ";
 
@@ -14,7 +15,7 @@ let wrapperClass = "gray-bg ";
         <Progress />
         <Navigation />
 
-        <div id="page-wrapper" className={wrapperClass} style={{backgroundColor: 'red'}}>
+        <div id="page-wrapper" className={classes.mainLayoutStyling}>
           <TopHeader />
 
           <main style={{margin: 0, padding: 0}}>

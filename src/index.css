@@ -6,6 +6,49 @@
  *   version 2.7.1
  *
 */
+
+
+
+
+
+/* my stuff */
+
+.gray-bg {
+    background-color: #f3f3f4 !important;
+}
+
+input.form-control.has-error {
+    border-color: #ed5565 !important
+}
+
+
+/* fix for side links having white background */
+.navbar-default {
+    background-color: transparent !important;
+}
+
+.panel-body {
+    min-height:400px !important;
+}
+
+.panel-footer {
+    background-color: #1ab394 !important;
+    color: #ffffff !important;
+}
+
+.panel-primary {
+    border-color: #1ab394  !important;
+    box-shadow: 4px 4px 6px #888888 !important;
+
+}
+.panel-primary > .panel-heading {
+    background-color: #1ab394 !important;
+    border-color: #1ab394 !important;
+    min-height: 70px;
+}
+
+/* end my stuff */
+
 h1,
 h2,
 h3,
@@ -38,10 +81,7 @@ h5 {
     margin-top: 5px;
     font-weight: 600;
 }
-/* fix for side links having white background */
-.navbar-default {
-    background-color: transparent !important;
-}
+
 
 
 .nav > li > a {
@@ -635,7 +675,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     min-width: 120px;
 }
 .btn-primary.btn-outline {
-    color: #1ab394;
+    color: #1ab394 !important;
 }
 .btn-success.btn-outline {
     color: #1c84c6;
@@ -657,8 +697,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     color: #fff;
 }
 .btn-primary {
-    background-color: #1ab394;
-    border-color: #1ab394;
+    background-color: #1ab394 !important;
+    border-color: #1ab394 !important;
     color: #FFFFFF;
 }
 .btn-primary:hover,
@@ -1903,28 +1943,29 @@ div.dt-button-info {
 }
 .form-control:focus,
 .single-line:focus {
-    border-color: #1ab394;
+    border-color: #1ab394 !important;
 }
 .has-success .form-control,
 .has-success .form-control:focus {
-    border-color: #1ab394;
+    border-color: #1ab394 !important;
 }
 .has-warning .form-control,
 .has-warning .form-control:focus {
-    border-color: #f8ac59;
+    border-color: #f8ac59 !important;
 }
 .has-error .form-control,
 .has-error .form-control:focus {
-    border-color: #ed5565;
+    border-color: #ed5565 !important;
 }
+
 .has-success .control-label {
-    color: #1ab394;
+    color: #1ab394 !important;
 }
 .has-warning .control-label {
-    color: #f8ac59;
+    color: #f8ac59 !important;
 }
 .has-error .control-label {
-    color: #ed5565;
+    color: #ed5565 !important;
 }
 .input-group-addon {
     background-color: #fff;
@@ -4068,13 +4109,7 @@ table.table-mail tr td {
 .black-bg {
     background-color: #262626;
 }
-.panel-primary {
-    border-color: #1ab394;
-}
-.panel-primary > .panel-heading {
-    background-color: #1ab394;
-    border-color: #1ab394;
-}
+
 .panel-success {
     border-color: #1c84c6;
 }

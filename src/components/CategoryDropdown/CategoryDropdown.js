@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
+import axios from 'axios';
+import config from '../../../server/config';
+
+
 class CategoryDropdown extends Component {
+
+    componentDidMount() {
+        {/* axios.get('./server/mock-data/categories.json')*/}
+        {/* axios.get(config.localPath + '/categories') */}
+        axios.get(config.localPath + '/categories')
+            .then(response => {
+                console.log(response.data);
+            })
+    }
+
+
     render() {
         return (
             <div className="navbar-header" style={{paddingTop: '14px'}}>

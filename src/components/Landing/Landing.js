@@ -26,11 +26,12 @@ class Landing extends Component {
                                         <span className="icon-bar"></span>
                                         <span className="icon-bar"></span>
                                     </button>
-                                    <Link to="/register" className="navbar-brand">LOGIN / REGISTER</Link>
+                                    <Link to="/register" className="navbar-brand">REGISTER</Link>
                                 </div>
                                 <div id="navbar" className="navbar-collapse collapse">
                                     <ul className="nav navbar-nav navbar-right">
                                         <li><Link to="/home" className="page-scroll" href="#page-top">Home</Link></li>
+                                        <li><Link to="/login" className="page-scroll" href="#page-top">Login</Link></li>
                                         <li><a className="page-scroll" href="#features">How It Works</a></li>
                                         <li><a className="page-scroll" href="#pricing">Pricing</a></li>
                                         <li><a className="page-scroll" href="#team">Register</a></li>

@@ -1,13 +1,178 @@
-import React, { Component } from 'react';
-import Progress from '../../components/common/Progress';
+import React, {Component} from 'react';
 import { Link, Location } from 'react-router-dom';
 
+import { validationRules } from '../../components/common/validationRules';
+import Input from '../../components/common/UI/Input/Input';
+import Spinner from '../../components/common/UI/Spinner/Spinner';
 import Blank from '../../hoc/layouts/Blank';
 
+import config from '../../../server/config';
+import axios from '../../axios-categories';
 
 class Register extends Component {
+    state = {
+        registerForm: {
+            firstName: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'First Name'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    mustMatch: false
+                },
+                valid: false,
+                touched: false
+            },
+            lastName: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Last Name'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    mustMatch: false
+                },
+                valid: false,
+                touched: false
+            },
+            email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Email'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true,
+                    mustMatch: false
+                },
+                valid: false,
+                touched: false
+            },
+            zipCode: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Zip Code'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 5,
+                    maxLength: 5,
+                    isNumeric: true,
+                    mustMatch: false
+                },
+                valid: false,
+                touched: false
+            },
+            password: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Password'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 8,
+                    mustMatch: false
+                },
+                valid: false,
+                touched: false
+            },
+            passwordConfirm: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Re-Type Password'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 8,
+                    mustMatch: true,
+                    mustMatchField: 'password',
+                    mustMatchValue: ''
+                },
+                valid: false,
+                touched: false
+            }
+        },
+        formIsValid: false,
+        loading: false
+    };
+
+    inputChangedHandler = (event, inputIdentifier) => {
+        const updatedRegisterForm = {
+            ...this.state.registerForm
+        };
+        const updatedFormElement = {
+            ...updatedRegisterForm[inputIdentifier]
+        };
+        updatedFormElement.value = event.target.value;
+
+        if (updatedFormElement.validation.mustMatch === true) {
+            updatedFormElement.validation.mustMatchValue = this.state.registerForm[updatedFormElement.validation.mustMatchField].value;
+        }
+
+        updatedFormElement.valid = validationRules(updatedFormElement.value, updatedFormElement.validation);
+        updatedFormElement.touched = true;
+        updatedRegisterForm[inputIdentifier] = updatedFormElement;
+
+        let formIsValid = true;
+        for (let inputIdentifier in updatedRegisterForm) {
+            formIsValid = updatedRegisterForm[inputIdentifier].valid && formIsValid;
+        }
+        this.setState({registerForm: updatedRegisterForm, formIsValid: formIsValid});
+    };
+
+    registerHandler = ( event ) => {
+        event.preventDefault();
+
+        const formData = {};
+        for (let formElementIdentifier in this.state.registerForm) {
+            formData[formElementIdentifier] = this.state.registerForm[formElementIdentifier].value;
+        }
+
+        console.log('form data', formData);
+
+        axios.post(config.localPath + '/register', formData)
+            .then(response => {
+                console.log(response);
+                this.props.history.push("/home");
+            })
+            .catch(error => console.log(error))
+
+    };
 
     render() {
+        const formElementsArray = [];
+        for ( let key in this.state.registerForm ) {
+            formElementsArray.push( {
+                id: key,
+                config: this.state.registerForm[key]
+            } );
+        }
+
+        let form = formElementsArray.map( formElement => (
+            <Input
+                key={formElement.id}
+                elementType={formElement.config.elementType}
+                elementConfig={formElement.config.elementConfig}
+                value={formElement.config.value}
+                invalid={!formElement.config.valid}
+                shouldValidate={formElement.config.validation}
+                touched={formElement.config.touched}
+                changed={( event ) => this.inputChangedHandler( event, formElement.id )} />
+        ) );
+
         return (
             <Blank>
                 <div className="middle-box text-center loginscreen animated fadeInDown">
@@ -18,31 +183,31 @@ class Register extends Component {
 
                         </div>
                         <h3>Register for Grocery List Plus</h3>
+                        <p className="text-muted text-center"><small>Already have an account?</small></p>
+                            <Link to="/login" className="btn btn-sm btn-success btn-block">Login</Link>
+                        <br />
+                        <p>OR</p>
                         <p>Create your FREE account and get started today.</p>
-                        <form className="m-t" role="form" action="login.html">
-                            <div className="form-group">
-                                <input type="text" className="form-control" placeholder="Name" required="" />
-                            </div>
-                            <div className="form-group">
-                                <input type="email" className="form-control" placeholder="Email" required="" />
-                            </div>
-                            <div className="form-group">
-                                <input type="password" className="form-control" placeholder="Password" required="" />
-                            </div>
+                        <form className="m-t" role="form" onSubmit={this.registerHandler}>
+                            {form}
                             <div className="form-group">
                                 <div className="checkbox i-checks"><label> <input type="checkbox" /><i></i>I Agree to the Terms and Conditions </label></div>
                             </div>
-                            <button type="submit" className="btn btn-primary block full-width m-b">Register</button>
-
-                            <p className="text-muted text-center"><small>Already have an account?</small></p>
-                            <a className="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+                            <button type="submit" className="btn btn-primary block full-width m-b" disabled={!this.state.formIsValid}>Register</button>
                         </form>
                     </div>
                 </div>
             </Blank>
-        )
-
+        );
     }
 }
 
-export default Register
+const mapStateToProps = state => {
+    return {
+        ings: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.totalPrice,
+        loading: state.order.loading
+    }
+};
+
+export default Register;

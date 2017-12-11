@@ -3,24 +3,26 @@ import { Link, Location } from 'react-router-dom';
 
 import Aux from '../../hoc/Aux/Aux';
 import Layout from '../../hoc/Layouts/Layout';
+import GroceryList from '../../containers/GroceryList/GroceryList';
 
 import classes from './Home.css'
 
 class Home extends Component {
 
     render() {
-        console.log(classes.Hometest);
 
         return (
             <Aux>
                 <Layout>
                     <div className={classes.Hometest}>
-test
+                        <GroceryList></GroceryList>
                     </div>
                 </Layout>
             </Aux>
         )
     }
+
+
 
 }
 
