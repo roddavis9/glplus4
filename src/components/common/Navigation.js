@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Link, Location } from 'react-router-dom';
 
+import Auth from '../../Auth/Auth.js';
+
 class Navigation extends Component {
 
     componentDidMount() {

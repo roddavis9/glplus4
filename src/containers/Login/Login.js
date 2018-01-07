@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Link, Location } from 'react-router-dom';
+import { Link, Location, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -90,18 +90,36 @@ class Auth extends Component {
                 changed={( event ) => this.inputChangedHandler( event, formElement.id )} />
         ) );
 
+        if (this.props.loading) {
+            form = <Spinner/>
+        }
+
+        let errorMessage = null;
+
+        if (this.props.error) {
+            errorMessage = (
+                <p style={{color: 'red', fontSize: '16px'}}>{this.props.error.message}</p>
+            )
+        }
+
+        let authRedirect = null;
+        if (this.props.hasProfile) {
+            authRedirect = <Redirect to='/home' />
+        }
+
         return (
             <Blank>
                 <div className="middle-box text-center loginscreen animated fadeInDown">
+
+                    {authRedirect}
                     <div>
                         <div>
-
                             <h1 className="logo-name">GL+</h1>
-
                         </div>
                         <h3>Welcome to Grocery List Plus</h3>
 
-                        <p>Login in and start shopping now.</p>
+                        {errorMessage}
+
                         <form className="m-t" role="form" onSubmit={this.loginHandler}>
                             {form}
                             <button type="submit" className="btn btn-primary block full-width m-b">Login</button>
@@ -117,10 +135,18 @@ class Auth extends Component {
     }
 }
 
+const mapStateToProps = state => {
+  return {
+      loading: state.auth.loading,
+      error: state.auth.error,
+      hasProfile: state.auth.token !== null
+  }
+};
+
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password) => dispatch(actions.auth(email, password))
     }
 };
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

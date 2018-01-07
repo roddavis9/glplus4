@@ -15,6 +15,7 @@ const config = require('./webpack.config');
 
 
 // my routes
+const authRoutes = require('./server/routes/auth');
 const categoriesRoutes = require('./server/routes/categories');
 const userRoutes = require('./server/routes/users');
 const appRoutes = require('./server/routes/app');
@@ -53,6 +54,7 @@ app.use(logger('dev'));
 app.use(cors());
 app.use(express.static(path.resolve(__dirname, './dist')));
 
+app.use('/api/signin', authRoutes);
 app.use('/api/categories', categoriesRoutes);
 app.use('/api/register', userRoutes);
 

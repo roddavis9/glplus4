@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class Blank extends React.Component {
+class Blank extends Component {
 
     render() {
         return (
@@ -20,3 +20,9 @@ class Blank extends React.Component {
 }
 
 export default Blank
+
+
+
+
+
+

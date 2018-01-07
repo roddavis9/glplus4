@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
+import { connect } from 'react-redux';
+
+
 import Aux from '../../hoc/Aux/Aux'
 import './Navigation.css';
 
 class Navigation extends Component {
+
 
     componentDidMount() {
         const { menu } = this.refs;
@@ -12,6 +16,8 @@ class Navigation extends Component {
     }
 
     render() {
+        let userFullName = this.props.user.firstName + ' ' + this.props.user.lastName;
+
         return (
             <nav className="navbar-default navbar-static-side" role="navigation">
                 <div className="sidebar-collapse">
@@ -20,8 +26,8 @@ class Navigation extends Component {
                         <div className="dropdown profile-element"> <span>
                              </span>
                             <a data-toggle="dropdown" className="dropdown-toggle" href="#">
-                            <span className="clear"> <span className="block m-t-xs"> <strong className="font-bold">Example user</strong>
-                             </span> <span className="text-muted text-xs block">Example position<b className="caret"></b></span> </span> </a>
+                            <span className="clear"> <span className="block m-t-xs"> <strong className="font-bold">{userFullName}</strong>
+                             </span> <span className="text-muted text-xs block">User Options<b className="caret"></b></span> </span> </a>
                             <ul className="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a href="#"> Logout</a></li>
                             </ul>
@@ -73,6 +79,9 @@ class Navigation extends Component {
                         <NavLink to="/search"><i className="fa fa-search fa-lg"></i> <span className="nav-label">Search</span></NavLink>
                     </li>
                     <li>
+                        <NavLink to="/suggested"><i className="fa fa-lightbulb-o fa-lg"></i> <span className="nav-label">Suggested Items</span></NavLink>
+                    </li>
+                    <li>
                         <NavLink to="/settings"><i className="fa fa-cogs fa-lg"></i> <span className="nav-label">Settings</span></NavLink>
                     </li>
 
@@ -85,4 +94,12 @@ class Navigation extends Component {
     }
 }
 
-export default Navigation
+
+const mapStateToProps = state => {
+    return {
+        user: state.auth.user
+    }
+};
+
+export default connect(mapStateToProps)(Navigation);
+

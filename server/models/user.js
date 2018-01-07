@@ -15,7 +15,7 @@ var schema = new Schema({
         billingState: {type: String},
         billingZip: {type: String}
     },
-    deliverySameAsBilling: {type: Boolean},
+    deliverySameAsBilling: {type: Boolean, default: true},
     deliveryInfo: {
         deliveryAddressLine1: {type: String},
         deliveryAddressLine2: {type: String},
@@ -27,7 +27,10 @@ var schema = new Schema({
     createdDate: { type: Date, default: Date.now },
     numLogins: {type: Number, default: 0},
     lastLogin: { type: Date, default: Date.now },
-    lastUpdated: { type: Date, default: Date.now }
+    lastUpdated: { type: Date, default: Date.now },
+    validationSentDate: { type: Date, default: Date.now },
+    validationReceivedDate: { type: Date },
+    accountValidated: { type: Boolean, default: false }
 });
 
 

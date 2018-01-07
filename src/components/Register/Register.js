@@ -7,7 +7,7 @@ import Spinner from '../../components/common/UI/Spinner/Spinner';
 import Blank from '../../hoc/layouts/Blank';
 
 import config from '../../../server/config';
-import axios from '../../axios-categories';
+import axios from 'axios';
 
 class Register extends Component {
     state = {

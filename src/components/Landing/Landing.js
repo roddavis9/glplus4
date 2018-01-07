@@ -3,14 +3,24 @@ import { Link, Location } from 'react-router-dom';
 import Progress from '../../components/common/Progress';
 import './Landing.css';
 
+import Auth from '../../Auth/Auth.js';
+
 import Blank from '../../hoc/layouts/Blank';
 
 class Landing extends Component {
+
+    login() {
+        const auth = new Auth();
+        auth.login();
+    }
 
     render() {
         const test = {
             zIndex: 100
         };
+
+
+
 
         return (
             <Blank>
@@ -31,7 +41,7 @@ class Landing extends Component {
                                 <div id="navbar" className="navbar-collapse collapse">
                                     <ul className="nav navbar-nav navbar-right">
                                         <li><Link to="/home" className="page-scroll" href="#page-top">Home</Link></li>
-                                        <li><Link to="/login" className="page-scroll" href="#page-top">Login</Link></li>
+                                        <li><a onClick={this.login} className="page-scroll" href="#page-top">Login</a></li>
                                         <li><a className="page-scroll" href="#features">How It Works</a></li>
                                         <li><a className="page-scroll" href="#pricing">Pricing</a></li>
                                         <li><a className="page-scroll" href="#team">Register</a></li>

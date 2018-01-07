@@ -2,6 +2,8 @@ import React from 'react';
 import { Dropdown } from 'react-bootstrap';
 import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
 import { smoothlyMenu } from '../Layouts/Helpers';
+import Auth from '../../Auth/Auth.js';
+
 
 class TopHeader extends React.Component {
 
@@ -9,6 +11,12 @@ class TopHeader extends React.Component {
         e.preventDefault();
         $("body").toggleClass("mini-navbar");
         smoothlyMenu();
+    }
+
+    logout(e) {
+        e.preventDefault();
+        const auth = new Auth();
+        auth.logout();
     }
 
     render() {
@@ -24,8 +32,8 @@ class TopHeader extends React.Component {
 
                     <ul className="nav navbar-top-links navbar-right">
                         <li>
-                            <a href="#">
-                                <i className="fa fa-sign-out"></i> Log out
+                            <a href="#" onClick={this.logout}>
+                                <i className="fa fa-sign-out"></i> Log Out
                             </a>
                         </li>
                     </ul>
