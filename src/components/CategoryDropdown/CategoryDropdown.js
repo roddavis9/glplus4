@@ -12,7 +12,7 @@ class CategoryDropdown extends Component {
         {/* axios.get(config.localPath + '/categories') */}
         axios.get(config.localPath + '/categories')
             .then(response => {
-                console.log(response.data);
+               // console.log(response.data);
             })
     }
 

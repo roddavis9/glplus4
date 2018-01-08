@@ -1,0 +1,155 @@
+.itemCheckbox {
+    margin-left: 5px;
+}
+
+.itemIcons {
+    display: inline-block;
+    whiteSpace: nowrap;
+    text-align: right;
+    float:right;
+    padding: 0 5px;
+
+}
+
+.price {
+    position:relative;
+    font-size:1.3rem;
+    float:right;
+    text-align: right;
+}
+
+.quantity {
+    font-size:1.5rem;
+    padding-left:5px;
+
+}
+
+
+.row {
+    margin-right: -20px !important;
+    margin-left: -20px !important;
+}
+
+.babyItem {
+    color: #925CB2;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.bakeryItem {
+    color: #753226;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.beautyItem {
+    color: #FF60F3;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.beerItem {
+    color: #D0A64A;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.beveragesItem {
+    color: #3F99ED;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.dairyItem {
+    color: #0F25A1;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.deliItem {
+    color: #E36A3F;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.frozenItem {
+    color: #07BDC4;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.groceryItem {
+    color: #2B343E;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.healthItem {
+    color: #FECF53;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.householdItem {
+    color: #D44B8D;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.liquorItem {
+    color: #8393A8;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.meatItem {
+    color: #BD001F;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.organicItem {
+    color: #C0CAAA;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.petItem {
+    color: #FD9B50;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.pharmacyItem {
+    color: #708238;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.produceItem {
+    color: #00AA00;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.seafoodItem {
+    color: #A3C7C2;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.wineItem {
+    color: #831F49;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+.otherItem {
+    color: #737070;
+    font-size: 1.08rem;
+    padding:5px;
+}
+
+
+
+
