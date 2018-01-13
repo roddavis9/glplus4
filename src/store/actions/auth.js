@@ -16,6 +16,8 @@ export const authSuccess = (token) => {
     setAuthToken(token);
     let profileInfo = jwtDecode(token).user;
 
+    console.log('glp_token', profileInfo);
+
     return {
         type: actionTypes.AUTH_SUCCESS,
         token: token,
@@ -59,10 +61,9 @@ export const auth = (email) => {
 
         axios.post(config.localPath + '/signin', authData)
             .then(response => {
-                console.log(response);
                 const token = response.data.token;
                 dispatch(authSuccess(token));
-                dispatch(checkAuthTimeout());
+              //  dispatch(checkAuthTimeout());
 
             })
             .catch(error => {

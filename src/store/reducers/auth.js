@@ -15,7 +15,6 @@ const authStart = (state, action) => {
 };
 
 const authSuccess = (state, action) => {
-    console.log('action', action);
 
     return updateObject(state, { isAuthenticated: true, hasProfile: true, token: action.token, user: action.user, error: null, loading: false });
 };

@@ -12,6 +12,8 @@ class GroceryListItem extends Component {
             return category.toUpperCase() + ', '
         });
 
+        let itemTotalPrice = (this.props.itemData.quantity * this.props.itemData.price_avg).toFixed(2);
+
         let itemDisplay = (
             <Aux>
                 <div className="row">
@@ -19,7 +21,15 @@ class GroceryListItem extends Component {
                         <input type="checkbox" id={this.props.itemData.itemId} value={this.props.itemData.itemId}/>
                     </div>
                     <div className="col-xs-1">
-                        <span className={classes.quantity}>{this.props.itemData.quantity}</span>
+                        <input
+                            className={classes.quantity}
+                            type="number"
+                            onChange={this.props.addItem}
+                            defaultValue={this.props.itemData.quantity}
+                            step="1"
+                            min="1"
+                            max="99"
+                        />
                     </div>
                     <div className="col-xs-4">
                         {this.props.itemData.item_name}
@@ -30,12 +40,6 @@ class GroceryListItem extends Component {
                     <div className="col-xs-4">
                         <div className="text-right itemIcons" style={{color: '#000000'}}>
                             <i className="fa fa-trash fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div className="text-right itemIcons" style={{color: '#E0AA27'}}>
-                            <i className="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div className="text-right itemIcons" style={{color: '#53739D'}}>
-                            <i className="fa fa-compress fa-2x" aria-hidden="true"></i>
                         </div>
                         {this.props.itemData.recurring &&
                         <div className="text-right itemIcons" style={{color: 'green'}}>
@@ -50,15 +54,26 @@ class GroceryListItem extends Component {
 
                     </div>
                 </div>
-                <div className="row" style={{lineHeight: '250%'}}>
-                    <div className="col-xs-2">
-                        Size:&nbsp;&nbsp;{this.props.itemData.net_wt}&nbsp;{this.props.itemData.wt_uom}
+                <div className="row">
+                    <div className="col-xs-1" style={{whiteSpace: 'nowrap'}}>
+                        $<input
+                            className={classes.quantity}
+                            type="number"
+                            defaultValue={this.props.itemData.price_avg}
+                            step="0.01"
+                            min="1"
+                            max="1000"
+                        />
                     </div>
-                    <div className="col-xs-7">
+
+                    <div className="col-xs-3">
+                        {this.props.itemData.net_wt}&nbsp;{this.props.itemData.wt_uom}
+                    </div>
+                    <div className="col-xs-5">
                         {categories}
                     </div>
                     <div className="col-xs-3 price">
-                    Price:&nbsp;&nbsp;{this.props.itemData.price_avg}
+                        Total:&nbsp;&nbsp;${itemTotalPrice}
                     </div>
                 </div>
             </Aux>
@@ -217,7 +232,8 @@ class GroceryListItem extends Component {
 }
 
 GroceryListItem.propTypes = {
-    itemData: PropTypes.object.isRequired
+    itemData: PropTypes.object.isRequired,
+    addItem: PropTypes.func
 };
 
 

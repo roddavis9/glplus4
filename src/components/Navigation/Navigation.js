@@ -37,7 +37,7 @@ class Navigation extends Component {
                         </div>
                     </li>
                     <li>
-                        <NavLink to="/" exact><i className="fa fa-home fa-lg"></i> <span className="nav-label">Home</span></NavLink>
+                        <NavLink to="/home" exact><i className="fa fa-home fa-lg"></i> <span className="nav-label">Home</span></NavLink>
                         {/*
                         <ul className="nav nav-second-level">
                             <li><a href="index.html">Dashboard v.1</a></li>

@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Input from '../../components/common/UI/Input/Input';
 import GroceryListHeader from '../../components/GroceryList/GroceryListHeader/GroceryListHeader';
 import GroceryListBody from '../../components/GroceryList/GroceryListBody/GroceryListBody';
+import Modal from '../../components/Common/UI/Modal/Modal';
 
 import Aux from '../../hoc/Aux/Aux';
 
@@ -23,6 +24,9 @@ class GroceryList extends Component {
             inventoryId: '5a2d921e706e519564ff1139',
             listName: 'rdavis9 Primary',
             groupName: 'rdavis9',
+            summary: {},
+            totalPrice: '',
+            quantity: 1,
             listItems: [
                 {
                         itemId: '123456',
@@ -31,9 +35,9 @@ class GroceryList extends Component {
                         wt_uom: 'oz',
                         dept: 'grocery',
                         deptDisplayName: 'grocery',
-                        categories: ['canned goods', 'pantry', 'test'],
+                        categories: ['canned goods', 'pantry', 'test', 'health and nutrition'],
                         price_avg: '1.50',
-                        quantity: '1',
+                        quantity: 1,
                         recurring: false,
                         useBulk: true,
                         upc: '051000014771',
@@ -51,12 +55,12 @@ class GroceryList extends Component {
                         deptDisplayName: 'Meat',
                         categories: ['ground beef'],
                         price_avg: '2.50',
-                        quantity: '2',
+                        quantity: 2,
                         recurring: true,
                         useBulk: true,
                         upc: '',
                         ean: '',
-                        currentlySuggested: false
+                        currentlySuggested: true
 
 
                 },
@@ -69,12 +73,12 @@ class GroceryList extends Component {
                     deptDisplayName: 'Health',
                     categories: ['hair care'],
                     price_avg: '3.50',
-                    quantity: '1',
+                    quantity: 1,
                     recurring: true,
                     useBulk: true,
                     upc: '',
                     ean: '',
-                    currentlySuggested: true
+                    currentlySuggested: false
 
 
                 }
@@ -85,9 +89,43 @@ class GroceryList extends Component {
         }
     };
 
+    addItemHandler = (itemId) => {
+        console.log('addItemHandler loaded', this.state);
+        let currentItem = this.state.list.listItems
+            .filter((item) => { return item.itemId === itemId })
+            .map()
+
+        console.log('currentItem', currentItem);
+
+        const oldQuantity = currentItem[0].quantity;
+
+        console.log(oldQuantity);
+/*
+        const updatedQuantity = oldQuantity + 1;
+        const updatedItem = {
+            ...currentItem[0]
+        };
+        updatedItem.quantity = updatedQuantity;
+        console.log('updatedQuantity', updatedQuantity);
+        console.log('updatedItem', updatedItem);
+
+        let testQuantity = updatedQuantity;
+
+
+        this.setState((state) => ({
+            list: {...this.state.list, listItems: {...this.state.list.listItems, quantity: state.list.listItems.quantity + 1}}
+        }));
+
+*/
+        console.log('state loaded', this.state);
+
+    };
+
     render() {
+        console.log('list loaded');
         return (
             <Aux>
+                <Modal/>
                 <div className="panel panel-primary" style={{maxWidth: '500px'}}>
                     <div className="panel-heading">
                         <GroceryListHeader
@@ -99,8 +137,11 @@ class GroceryList extends Component {
                         />
                     </div>
                     <div className="panel-body">
+                        <button type="button" onClick={() => this.addItemHandler('123456')}>test</button>
                         <GroceryListBody
                             itemList={this.state.list.listItems}
+                            itemAdded={this.addItemHandler}
+
                         />
                     </div>
                     <div className="panel-footer">

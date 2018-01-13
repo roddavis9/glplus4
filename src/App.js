@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-//import { Route, Router, IndexRedirect, browserHistory} from 'react-router';
-import Auth from './Auth/Auth';
-
-
-
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 
@@ -13,19 +9,20 @@ import Friends from './components/Friends/Friends';
 import Landing from './components/Landing/Landing';
 import Register from './components/Register/Register';
 import Login from './containers/Login/Login';
-import Callback from './Callback/Callback';
+import CbLogin from './Callback/CbLogin';
+import CbRegister from './Callback/CbRegister';
 
 
 class App extends Component {
     render() {
         return (
             <Switch>
-                <Route path='/friends' component={Friends} />
-                <Route path='/home' component={Home} />
-                <Route path='/login' component={Login} />
-                <Route path='/register' component={Register} />
-                <Route path="/callback" component={Callback} />
-                <Route exact path='/' component={Landing} />
+                <Route exact path='/friends' component={Friends} />
+                <Route exact path='/home' component={Home} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/register' component={Register} />
+                <Route exact path="/cblogin" component={CbLogin} />
+                <Route exact path='/' component={Register} />
             </Switch>
 
 
@@ -33,4 +30,7 @@ class App extends Component {
     }
 }
 
-export default App;
+
+
+export default withRouter(App);
+

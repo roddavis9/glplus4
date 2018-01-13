@@ -3,7 +3,6 @@ import { Link, Location } from 'react-router-dom';
 
 import { validationRules } from '../../components/common/validationRules';
 import Input from '../../components/common/UI/Input/Input';
-import Spinner from '../../components/common/UI/Spinner/Spinner';
 import Blank from '../../hoc/layouts/Blank';
 
 import config from '../../../server/config';
@@ -72,16 +71,34 @@ class Register extends Component {
                 valid: false,
                 touched: false
             },
-            password: {
+            username: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'password',
-                    placeholder: 'Password'
+                    type: 'text',
+                    placeholder: 'Username',
+                    autoComplete: 'username'
                 },
                 value: '',
                 validation: {
                     required: true,
-                    minLength: 8,
+                    minLength: 3,
+                    maxLength: 15,
+                    mustMatch: false
+                },
+                valid: false,
+                touched: false
+            },
+            password: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Password',
+                    autoComplete: 'new-password'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isPassword: true,
                     mustMatch: false
                 },
                 valid: false,
@@ -91,7 +108,8 @@ class Register extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Re-Type Password'
+                    placeholder: 'Re-Type Password',
+                    autoComplete: 'new-password'
                 },
                 value: '',
                 validation: {
@@ -135,6 +153,14 @@ class Register extends Component {
 
     registerHandler = ( event ) => {
         event.preventDefault();
+
+        let webAuth = new auth0.WebAuth({
+            domain: AUTH_CONFIG.domain,
+            clientID: AUTH_CONFIG.clientId,
+        });
+
+
+
 
         const formData = {};
         for (let formElementIdentifier in this.state.registerForm) {
@@ -202,12 +228,5 @@ class Register extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        ings: state.burgerBuilder.ingredients,
-        price: state.burgerBuilder.totalPrice,
-        loading: state.order.loading
-    }
-};
 
 export default Register;

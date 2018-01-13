@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { Link, Location, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { AUTH_CONFIG } from '../../Auth/auth_variables';
 
 import { validationRules } from '../../components/common/validationRules';
 import Input from '../../components/common/UI/Input/Input';
-import Spinner from '../../components/common/UI/Spinner/Spinner';
+import loading from '../../assets/loading.svg';
 
 import * as actions from '../../store/actions/index';
 
@@ -28,12 +28,14 @@ class Auth extends Component {
                 },
                 valid: false,
                 touched: false
+
             },
             password: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Password'
+                    placeholder: 'Password',
+                    autoComplete: 'current-password'
                 },
                 value: '',
                 validation: {
@@ -42,11 +44,13 @@ class Auth extends Component {
                 },
                 valid: false,
                 touched: false
+
             }
         },
         formIsValid: false,
         loading: false
     };
+
 
     inputChangedHandler = (event, inputIdentifier) => {
         const updatedLoginForm = {
@@ -64,12 +68,37 @@ class Auth extends Component {
 
     loginHandler = ( event ) => {
         event.preventDefault();
-        this.props.onAuth(this.state.loginForm.email.value, this.state.loginForm.password.value);
+        let webAuth = new auth0.WebAuth({
+            domain: AUTH_CONFIG.domain,
+            clientID: AUTH_CONFIG.clientId,
+        });
+
+
+        webAuth.redirect.loginWithCredentials({
+            connection: AUTH_CONFIG.connection,
+            username: this.state.loginForm['email'].value,
+            password: this.state.loginForm['password'].value,
+            audience: AUTH_CONFIG.audience,
+            responseType: AUTH_CONFIG.responseType,
+            scope: AUTH_CONFIG.scope,
+            redirectUri: AUTH_CONFIG.callbackUrl,
+
+        });
 
     };
 
 
     render() {
+        const style = {
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: '#f3f3f4',
+        };
+
+
+
         const formElementsArray = [];
         for ( let key in this.state.loginForm ) {
             formElementsArray.push( {
@@ -87,11 +116,12 @@ class Auth extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
+                autocomplete={formElement.config.autocomplete}
                 changed={( event ) => this.inputChangedHandler( event, formElement.id )} />
         ) );
 
         if (this.props.loading) {
-            form = <Spinner/>
+            form = (<div style={style}><img src={loading} alt="loading"/></div>);
         }
 
         let errorMessage = null;
@@ -136,6 +166,7 @@ class Auth extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log('original state', state);
   return {
       loading: state.auth.loading,
       error: state.auth.error,
@@ -143,10 +174,5 @@ const mapStateToProps = state => {
   }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password))
-    }
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps)(Auth);

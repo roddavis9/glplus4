@@ -8,15 +8,23 @@ class GroceryListBody extends Component {
     render() {
 
         let itemsArray = this.props.itemList.map((item, index) => {
-            console.log(item);
+            // console.log(item);
             return (
                 <div className="row" key={item.itemId + index}>
                     <GroceryListItem
                         itemData={item}
+                        addItem={() => this.props.itemAdded(item.itemId)}
                     />
                 </div>
             )
-        });
+        })
+        .reduce((arr, el) => {
+            return arr.concat(el)
+        }, []);
+
+        if (itemsArray.length === 0) {
+            itemsArray = <p>Please start adding items</p>
+        }
 
         return (
             <div className="col-md-12">
@@ -28,7 +36,8 @@ class GroceryListBody extends Component {
 }
 
 GroceryListBody.propTypes = {
-    itemList: PropTypes.array.isRequired
+    itemList: PropTypes.array.isRequired,
+    itemAdded: PropTypes.func
 };
 
 

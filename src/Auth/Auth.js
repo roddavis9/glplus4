@@ -2,8 +2,6 @@ import history from '../history';
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth_variables';
 
-import * as actionTypes from '../store/actions/actionTypes';
-
 export default class Auth {
     auth0 = new auth0.WebAuth({
         domain: AUTH_CONFIG.domain,
@@ -76,9 +74,9 @@ export default class Auth {
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
 
-        return authResult.idToken;
+
         // navigate to the home route
-       // history.replace('/home');
+//        history.replace('/home');
     }
 
     logout() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router } from 'react-router-dom';
+import { Router, BrowserRouter, ConnectedRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
@@ -11,7 +11,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import setAuthToken from './store/utils/setAuthToken';
 
-import categoryReducer from './store/reducers/reducer';
+import categoryReducer from './store/reducers/categoryReducer';
 import authReducer from './store/reducers/auth';
 
 
@@ -35,9 +35,20 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
 const rootReducer = combineReducers({
-    auth: authReducer,
-    categories: categoryReducer
-})
+    auth: authReducer
+});
+
+const logger = store => {
+    return next => {
+        return action => {
+            console.log('[middleware dispatching]', action);
+            const result = next(action);
+            console.log('[middleware] next state', store.getState());
+            return result;
+        }
+    }
+};
+
 
 const store = createStore(rootReducer, composeEnhancers (
     applyMiddleware(thunk)
@@ -47,11 +58,11 @@ setAuthToken(localStorage.token);
 
 const app = (
     <Provider store={store}>
-        <IntlProvider locale="en">
-            <Router history={history}>
-                <App />
-            </Router>
-        </IntlProvider>
+            <IntlProvider locale="en">
+                <BrowserRouter history={history}>
+                    <App />
+                </BrowserRouter>
+            </IntlProvider>
     </Provider>
 );
 
