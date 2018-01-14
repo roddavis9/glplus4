@@ -1,31 +1,30 @@
 import React, { Component } from 'react';
 import { Location, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Auth from '../../Auth/Auth.js';
 
-
-import Aux from '../../hoc/Aux/Aux';
 import Layout from '../Layouts/Layout';
 import GroceryList from '../../containers/GroceryList/GroceryList';
 
 
 import classes from './Home.css'
-let jwtDecode = require('jwt-decode');
 import * as actions from '../../store/actions/index';
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
-
         console.log('constructor() -- Home.js');
 
-
-
         const expirationDate = new Date(parseInt(localStorage.getItem('expires_at')));
-
         console.log('Expires:  ', expirationDate);
 
+        if (this.props.onCheckTimeout()) {
+            // make sure we have a profile and if not get it
+            if( this.props.user === '') {
+                console.log('no user data');
+                this.props.onSetProfile();
+            }
+        } // this will logout from the action so no need for logout condition here
     }
 
     componentWillMount() {
@@ -33,13 +32,7 @@ class Home extends Component {
         // check authentication for validity
         console.log('componentWillMount() -- Home.js');
 
-        const idToken = localStorage.getItem('id_token');
-        const glpToken = localStorage.getItem('glp_token');
-        const profileInfo = jwtDecode(idToken);
 
-        if(!glpToken) {
-            this.props.onAuth(profileInfo.email);
-        }
 
     }
 
@@ -67,13 +60,16 @@ class Home extends Component {
 const mapStateToProps = state => {
     return {
         hasProfile: state.auth.hasProfile,
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        user: state.auth.user
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email) => dispatch(actions.auth(email))
+        onAuth: (email) => dispatch(actions.auth(email)),
+        onCheckTimeout: () => dispatch(actions.checkAuthTimeout()),
+        onSetProfile: () => dispatch(actions.authSetProfile()),
     }
 };
 

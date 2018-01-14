@@ -1,3 +1,5 @@
 export {
-    auth
+    auth,
+    authSetProfile,
+    checkAuthTimeout
 } from './auth'

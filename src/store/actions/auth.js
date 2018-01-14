@@ -5,6 +5,39 @@ import setAuthToken from '../utils/setAuthToken';
 let jwtDecode = require('jwt-decode');
 import Auth from '../../Auth/Auth.js';
 
+const authService = new Auth();
+
+export const authSetProfile = () => {
+    const idToken = localStorage.getItem('id_token');
+    const glpToken = localStorage.getItem('glp_token');
+
+    if (idToken) {
+        const profileInfo = jwtDecode(idToken);
+
+
+        if (!glpToken) {
+            return dispatch => {
+                dispatch(auth(profileInfo.email));
+            }
+        } else {
+            const user = jwtDecode(glpToken);
+            setAuthToken(glpToken);
+
+            console.log('glp_userInfo', user.user);
+
+            // set user info
+            return {
+                type: actionTypes.AUTH_SET_PROFILE,
+                token: glpToken,
+                user: user.user
+            };
+
+        }
+    } else {
+        authService.logout();
+    }
+};
+
 export const authStart = () => {
     return {
         type: actionTypes.AUTH_START
@@ -16,7 +49,7 @@ export const authSuccess = (token) => {
     setAuthToken(token);
     let profileInfo = jwtDecode(token).user;
 
-    console.log('glp_token', profileInfo);
+    console.log('glp_userInfo', profileInfo);
 
     return {
         type: actionTypes.AUTH_SUCCESS,
@@ -42,11 +75,11 @@ export const logout = () => {
 };
 
 export const checkAuthTimeout = () => {
-    const auth = new Auth();
-
     return dispatch => {
-        if (!auth.isAuthenticated) {
-            dispatch(auth.logout());
+        if (!authService.isAuthenticated()) {
+            dispatch(authService.logout());
+        } else {
+            return true;
         }
     };
 };
@@ -61,9 +94,10 @@ export const auth = (email) => {
 
         axios.post(config.localPath + '/signin', authData)
             .then(response => {
+
                 const token = response.data.token;
                 dispatch(authSuccess(token));
-              //  dispatch(checkAuthTimeout());
+                // dispatch(checkAuthTimeout());
 
             })
             .catch(error => {
@@ -72,4 +106,4 @@ export const auth = (email) => {
 
             })
     }
-}
+};

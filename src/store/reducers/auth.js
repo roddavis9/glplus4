@@ -5,10 +5,16 @@ const initialState = {
     isAuthenticated: false,
     hasProfile: false,
     token: null,
-    user: {},
+    user: '',
+    userPreferences: {},
     error: null,
     loading: false
 };
+
+const authSetProfile = (state, action) => {
+    return updateObject(state, { user: action.user });
+};
+
 
 const authStart = (state, action) => {
     return updateObject(state, { error: null, loading: true });
@@ -29,6 +35,8 @@ const authLogout = (state, action) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.AUTH_SET_PROFILE:
+            return authSetProfile(state, action);
         case actionTypes.AUTH_START:
             return authStart(state, action);
         case actionTypes.AUTH_SUCCESS:
