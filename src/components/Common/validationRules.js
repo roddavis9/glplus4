@@ -1,6 +1,6 @@
 export function validationRules(value, rules) {
 
-    alert('sadadas');
+
     let isValid = true;
     if (!rules) {
         return true;

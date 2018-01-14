@@ -7,19 +7,18 @@ import { validationRules } from '../../components/common/validationRules';
 import Input from '../../components/common/UI/Input/Input';
 import loading from '../../assets/loading.svg';
 
-import * as actions from '../../store/actions/index';
-
 import Blank from '../../hoc/layouts/Blank';
 
 
-class Auth extends Component {
+class Login extends Component {
     state = {
         loginForm: {
             email: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
-                    placeholder: 'Email Address'
+                    placeholder: 'Email Address',
+                    autoComplete: 'email'
                 },
                 value: '',
                 validation: {
@@ -81,7 +80,7 @@ class Auth extends Component {
             audience: AUTH_CONFIG.audience,
             responseType: AUTH_CONFIG.responseType,
             scope: AUTH_CONFIG.scope,
-            redirectUri: AUTH_CONFIG.callbackUrl,
+            redirectUri: AUTH_CONFIG.loginCallbackUrl,
 
         });
 
@@ -139,13 +138,16 @@ class Auth extends Component {
 
         return (
             <Blank>
-                <div className="middle-box text-center loginscreen animated fadeInDown">
+                <div className="text-center">
+                    <img
+                        src={ require("../../assets/img/GLP_Web.gif")} alt="Grocery List Plus desktop and mobile grocery shopping application logo"
+                        style={{width: '600px'}}
+                    />
+                </div>
 
+                <div className="middle-box text-center loginscreen animated fadeInDown">
                     {authRedirect}
                     <div>
-                        <div>
-                            <h1 className="logo-name">GL+</h1>
-                        </div>
                         <h3>Welcome to Grocery List Plus</h3>
 
                         {errorMessage}
@@ -166,7 +168,6 @@ class Auth extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('original state', state);
   return {
       loading: state.auth.loading,
       error: state.auth.error,
@@ -175,4 +176,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps)(Auth);
+export default connect(mapStateToProps)(Login);

@@ -59,7 +59,7 @@ setAuthToken(localStorage.token);
 const app = (
     <Provider store={store}>
             <IntlProvider locale="en">
-                <BrowserRouter history={history}>
+                <BrowserRouter>
                     <App />
                 </BrowserRouter>
             </IntlProvider>

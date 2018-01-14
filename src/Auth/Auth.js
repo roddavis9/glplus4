@@ -6,10 +6,10 @@ export default class Auth {
     auth0 = new auth0.WebAuth({
         domain: AUTH_CONFIG.domain,
         clientID: AUTH_CONFIG.clientId,
-        redirectUri: AUTH_CONFIG.callbackUrl,
-        audience: 'https://glplus.auth0.com/userinfo',
-        responseType: 'token id_token',
-        scope: 'openid profile email'
+        redirectUri: AUTH_CONFIG.loginCallbackUrl,
+        audience: AUTH_CONFIG.audience,
+        responseType: AUTH_CONFIG.responseType,
+        scope: AUTH_CONFIG.scope
     });
 
 
@@ -28,8 +28,7 @@ export default class Auth {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
-
-               // history.replace('/home');
+                // console.log('authResult', authResult);
             } else if (err) {
                 history.replace('/');
                 console.log('error is here', err);
@@ -86,6 +85,7 @@ export default class Auth {
         localStorage.removeItem('id_token');
         localStorage.removeItem('expires_at');
         localStorage.removeItem('glp_token');
+        localStorage.removeItem('auth0.ssodata');
         // navigate to the home route
         history.replace('/');
     }

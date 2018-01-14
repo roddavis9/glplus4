@@ -11,13 +11,13 @@ import * as actions from '../store/actions/index';
 let jwtDecode = require('jwt-decode');
 
 
-class Callback extends Component {
+class CbLogin extends Component {
 
 
 
     componentWillMount() {
 
-        console.log('componentWillMount() -- Callback.js');
+        console.log('componentWillMount() -- CbLogin.js');
 
         const auth = new Auth();
         auth.handleAuthentication();
@@ -55,12 +55,15 @@ class Callback extends Component {
 
         return (
             <Blank>
-                <div className="middle-box text-center loginscreen">
+                <div className="text-center">
+                    <img
+                        src={ require("../../src/assets/img/GLP_Web.gif")} alt="Grocery List Plus desktop and mobile grocery shopping application logo"
+                        style={{width: '600px'}}
+                    />
+                </div>
 
+                <div className="middle-box text-center loginscreen">
                     <div>
-                        <div>
-                            <h1 className="logo-name">GL+</h1>
-                        </div>
                         <div style={style}>
                             <img src={loading} alt="loading"/>
                         </div>
@@ -91,5 +94,5 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Callback));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CbLogin));
 

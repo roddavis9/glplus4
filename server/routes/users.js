@@ -29,10 +29,11 @@ router.post('/', function(req, res, next) {
     let userData = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        username: req.body.username,
         email: req.body.email,
         zipCode: req.body.zipCode,
-        password: req.body.password
-
+        password: req.body.password,
+        auth0Id: req.body.auth0Id
     };
 
     User.create(userData)

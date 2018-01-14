@@ -3,11 +3,15 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
 var schema = new Schema({
+    auth0Id: {type: String, required: true},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
+    username: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique:true},
+    emailVerified: {type: Boolean, default: false},
     zipCode: {type: String, required: true},
+    createdDate: { type: Date, default: Date.now },
     billingInfo: {
         billingAddressLine1: {type: String},
         billingAddressLine2: {type: String},
@@ -24,13 +28,42 @@ var schema = new Schema({
         deliveryZip: {type: String}
     },
     role: {type: String, default: 'customer'},
-    createdDate: { type: Date, default: Date.now },
-    numLogins: {type: Number, default: 0},
-    lastLogin: { type: Date, default: Date.now },
-    lastUpdated: { type: Date, default: Date.now },
-    validationSentDate: { type: Date, default: Date.now },
-    validationReceivedDate: { type: Date },
-    accountValidated: { type: Boolean, default: false }
+    friends: [
+        {
+            friendId: {type: Schema.Types.ObjectId, ref: 'User'},
+            username: {type: String}
+        }
+    ],
+    groups: [
+        {
+            groupId: {type: Schema.Types.ObjectId, ref: 'User'},
+            groupname: {type: String},
+        }
+    ],
+    pendingFriendInvites: [
+        {
+            friendId: {type: Schema.Types.ObjectId, ref: 'User'},
+            friendEmail: {type: String},
+            friendUsername: {type: String},
+            requestDate: { type: Date, default: Date.now }
+        }
+    ],
+    pendingGroupInvites: [
+        {
+            groupId: {type: Schema.Types.ObjectId, ref: 'User'},
+            groupname: {type: String},
+            invitees: [
+                {
+                    friendEmail: {type: String},
+                    friendUsername: {type: String},
+                    requestDate: { type: Date, default: Date.now }
+                }
+            ]
+
+        }
+    ]
+
+
 });
 
 
