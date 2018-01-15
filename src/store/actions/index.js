@@ -2,4 +2,8 @@ export {
     auth,
     authSetProfile,
     checkAuthTimeout
-} from './auth'
+} from './auth';
+
+export {
+    walmartGetAllCategories
+} from './walmartCategory'

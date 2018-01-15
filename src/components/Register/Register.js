@@ -221,12 +221,6 @@ class Register extends Component {
 
         }, 1500);
 
-
-
-
-/*
-
-*/
     };
 
     render() {

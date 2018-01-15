@@ -34,6 +34,8 @@
     "webpack-hot-middleware": "^2.20.0"
   },
   "dependencies": {
+    "ag-grid": "^15.0.0",
+    "ag-grid-react": "^15.0.0",
     "animate.css": "^3.5.2",
     "auth0-js": "^9.0.2",
     "auth0-lock": "^11.0.1",
@@ -65,6 +67,7 @@
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.0.0",
+    "react-dom-factories": "^1.0.2",
     "react-intl": "^2.4.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",

@@ -4,7 +4,9 @@ import { Router, BrowserRouter, ConnectedRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import history from './history';
+
+import "ag-grid/dist/styles/ag-grid.css";
+import "ag-grid/dist/styles/theme-fresh.css";
 
 import './index.css';
 import App from './App';
@@ -29,13 +31,15 @@ import './index.css'
 import './../node_modules/bootstrap/dist/css/bootstrap.css'
 import './../node_modules/font-awesome/css/font-awesome.css'
 import './../node_modules/animate.css/animate.min.css'
+import walmartCategoryReducer from "./store/reducers/walmartCategory";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    walmartCategory: walmartCategoryReducer
 });
 
 const logger = store => {

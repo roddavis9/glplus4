@@ -52,7 +52,9 @@ app.use(cookieParser());
 app.use(compression());
 app.use(logger('dev'));
 app.use(cors());
+
 app.use(express.static(path.resolve(__dirname, './dist')));
+
 
 app.use('/api/signin', authRoutes);
 app.use('/api/categories', categoriesRoutes);

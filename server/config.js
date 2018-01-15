@@ -4,7 +4,10 @@ const config = {
   localPath: 'http://localhost:4200/api',
   secretKey: '$2a$10$GL_Plus',
   sessionKey: '',
-  sessionKeyLength: 180000
+  sessionKeyLength: 180000,
+  walmartApiKey: 'ntuy6v466fwhpxftt2dve4qm',
+  nutritionixApiId: 'b1f8977d',
+  nutritionixApiKey: '7ffcbc7909e309c42cc27f9406989a10'
 };
 
 module.exports = config;
