@@ -35,9 +35,9 @@ class CbLogin extends Component {
             setTimeout(function() {
                 this.props.history.replace("/home")
               //  this.setState({ doRedirect: true });
-            }.bind(this), 1000)
+            }.bind(this), 1500)
 
-        }.bind(this), 800);
+        }.bind(this), 1200);
 
     }
 

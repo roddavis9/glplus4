@@ -56,7 +56,7 @@ app.use(cors());
 
 app.use(express.static(path.resolve(__dirname, './dist')));
 
-app.use('/*', function (req, res) {
+app.use('/', function (req, res) {
     res.sendFile(path.join(__dirname, './dist', 'index.html'));
 });
 

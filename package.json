@@ -7,7 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --host 0.0.0.0 --port 3000 --inline --hot",
     "devstart": "npm run build && nodemon server.js",
-    "build": "webpack --config webpack.prod.config.js --progress --profile --color "
+    "build": "rimraf dist && webpack --config webpack.prod.config.js --progress --profile --color "
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3000",
+      "pathRewrite": {
+        "^/api": "/"
+      }
+    }
   },
   "author": "Rod Davis",
   "license": "MIT",
