@@ -202,7 +202,7 @@ class Register extends Component {
         setTimeout( function() {
             formData.auth0Id = authResponseData.Id;
 
-            axios.post(config.remotePath + '/register', formData)
+            axios.post(config.localPath + '/register', formData)
                 .then(response => {
                     webAuth.redirect.loginWithCredentials({
                         connection: AUTH_CONFIG.connection,

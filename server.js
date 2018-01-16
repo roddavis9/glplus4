@@ -22,6 +22,8 @@ const appRoutes = require('./server/routes/app');
 
 const app = new express;
 
+console.log('path', path);
+
 // Run Webpack dev server in development mode
 if (process.env.NODE_ENV === 'development') {
     const compiler = webpack(config);
@@ -67,6 +69,8 @@ app.use((err, req, res, next) => {
 });
 
 const server = http.createServer(app);
+
+console.log('process.env.PORT', process.env.PORT);
 
 server.listen(process.env.port || serverConfig.port, function() {
     console.log(`********MERN is running on port: ${serverConfig.port}! *********`); // eslint-disable-line

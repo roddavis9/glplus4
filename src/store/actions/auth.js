@@ -92,7 +92,7 @@ export const auth = (email) => {
             returnSecureToken: true
         };
 
-        axios.post(config.remotePath + '/signin', authData)
+        axios.post(config.localPath + '/signin', authData)
             .then(response => {
 
                 const token = response.data.token;

@@ -68,6 +68,9 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        historyApiFallback: true,
+    },
     plugins: [
         new ExtractTextPlugin("styles.css"),
         new htmlWebpackPlugin({
