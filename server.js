@@ -52,13 +52,7 @@ app.use(cookieParser());
 app.use(compression());
 app.use(logger('dev'));
 app.use(cors());
-// app.use(express.static(path.join(__dirname, './dist')));
-
-app.use(express.static(path.resolve(__dirname, './dist')));
-
-app.use('/', function (req, res) {
-    res.sendFile(path.join(__dirname, './dist', 'index.html'));
-});
+app.use(express.static(path.join(__dirname, './dist')));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
