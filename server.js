@@ -22,8 +22,6 @@ const appRoutes = require('./server/routes/app');
 
 const app = new express;
 
-console.log('path', path);
-
 // Run Webpack dev server in development mode
 if (process.env.NODE_ENV === 'development') {
     const compiler = webpack(config);
@@ -54,12 +52,28 @@ app.use(cookieParser());
 app.use(compression());
 app.use(logger('dev'));
 app.use(cors());
+// app.use(express.static(path.join(__dirname, './dist')));
+
 app.use(express.static(path.resolve(__dirname, './dist')));
+
+app.use('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, './dist', 'index.html'));
+});
+
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Credentials', 'false');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, Accept,X-Requested-With, access-control-allow-headers, Origin, Accept, X-Requested-With, content-type, Access-Control-Request-Method, Access-Control-Request-Headers, access-control-allow-credentials, access-control-allow-headers, access-control-allow-methods, access-control-allow-origin');
+    res.setHeader('Access-Control-Request-Headers', 'access-control-allow-headers, Origin, Accept, X-Requested-With, content-type, Access-Control-Request-Method, Access-Control-Request-Headers, access-control-allow-credentials, access-control-allow-headers, access-control-allow-methods, access-control-allow-origin');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, HEAD, PATCH, DELETE, OPTIONS, PUT');
+    next();
+});
 
 app.use('/api/signin', authRoutes);
 app.use('/api/categories', categoriesRoutes);
 app.use('/api/register', userRoutes);
 
+app.use('/', appRoutes);
 
 
 app.use((err, req, res, next) => {
