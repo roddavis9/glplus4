@@ -148,7 +148,7 @@ class Login extends Component {
                 <div className="middle-box text-center loginscreen animated fadeInDown">
                     {authRedirect}
                     <div>
-                        <h3>Welcome to Grocery List Plus</h3>
+                        <h3 style={{marginTop: '-20px', color:'#F3752C'}}>Welcome to Grocery List Plus</h3>
 
                         {errorMessage}
 

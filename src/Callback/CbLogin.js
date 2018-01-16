@@ -94,5 +94,5 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CbLogin));
+export default connect(mapStateToProps, mapDispatchToProps)(CbLogin);
 

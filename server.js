@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const http = require('http');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
@@ -52,9 +52,7 @@ app.use(cookieParser());
 app.use(compression());
 app.use(logger('dev'));
 app.use(cors());
-
 app.use(express.static(path.resolve(__dirname, './dist')));
-
 
 app.use('/api/signin', authRoutes);
 app.use('/api/categories', categoriesRoutes);
@@ -68,7 +66,9 @@ app.use((err, req, res, next) => {
 
 });
 
-app.listen(process.env.port || serverConfig.port, function() {
+const server = http.createServer(app);
+
+server.listen(process.env.port || serverConfig.port, function() {
     console.log(`********MERN is running on port: ${serverConfig.port}! *********`); // eslint-disable-line
 });
 

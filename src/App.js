@@ -21,7 +21,7 @@ class App extends Component {
                 <Route exact path='/home' component={Home} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/register' component={Register} />
-                <Route exact path="/cblogin" component={CbLogin} />
+                <Route path="/cblogin" component={CbLogin} />
                 <Route exact path="/admin-walmart-categories" component={Admin_WalmartCategories} />
                 <Route exact path='/' component={Landing} />
             </Switch>

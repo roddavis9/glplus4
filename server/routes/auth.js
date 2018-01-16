@@ -8,6 +8,7 @@ const config = require('../config');
 
 const APP_KEY = config.secretKey;
 
+
 // validate login credentials
 router.post('/', function(req, res, next) {
     console.log('req.body', req.body);
