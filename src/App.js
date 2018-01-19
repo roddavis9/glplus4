@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -17,13 +17,14 @@ class App extends Component {
     render() {
         return (
             <Switch>
-                <Route exact path='/friends' component={Friends} />
-                <Route exact path='/home' component={Home} />
-                <Route exact path='/login' component={Login} />
-                <Route exact path='/register' component={Register} />
+                <Route path='/login' component={Login} />
+                <Route path='/register' component={Register} />
                 <Route path="/cblogin" component={CbLogin} />
-                <Route exact path="/admin-walmart-categories" component={Admin_WalmartCategories} />
+                <Route path='/friends' component={Friends} />
+                <Route path='/home' component={Home} />
+                <Route path="/admin-walmart-categories" component={Admin_WalmartCategories} />
                 <Route exact path='/' component={Landing} />
+
             </Switch>
 
 

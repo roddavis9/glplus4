@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import { Link, Location, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { AUTH_CONFIG } from '../../Auth/auth_variables';
+import { AUTH_CONFIG } from './../../Auth/auth_variables';
 
-import { validationRules } from '../../components/common/validationRules';
-import Input from '../../components/common/UI/Input/Input';
-import loading from '../../assets/loading.svg';
+import { validationRules } from './../../components/Common/validationRules';
+import Input from './../../components/Common/UI/Input/Input';
+import loading from './../../assets/loading.svg';
 
-import Blank from '../../hoc/layouts/Blank';
+import Blank from './../../hoc/Layouts/Blank';
 
 
 class Login extends Component {

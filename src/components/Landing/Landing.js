@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link, Location } from 'react-router-dom';
-import Progress from '../../components/common/Progress';
+import Progress from './../../components/Common/Progress';
 import './Landing.css';
 
-import Auth from '../../Auth/Auth.js';
+import Auth from './../../Auth/Auth.js';
 
-import Blank from '../../hoc/layouts/Blank';
+import Blank from './../../hoc/Layouts/Blank';
 
 class Landing extends Component {
 

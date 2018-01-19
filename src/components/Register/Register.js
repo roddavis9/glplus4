@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link, Location } from 'react-router-dom';
-import Auth from '../../Auth/Auth.js';
-import { AUTH_CONFIG } from '../../Auth/auth_variables';
-import history from '../../history';
+import Auth from './../../Auth/Auth.js';
+const serverConfig = require('dotenv').config();
+import history from './../../history';
 
 
-import { validationRules } from '../../components/common/validationRules';
-import Input from '../../components/common/UI/Input/Input';
-import loading from '../../assets/loading.svg';
+import { validationRules } from './../../components/Common/validationRules';
+import Input from './../../components/Common/UI/Input/Input';
+import loading from './../../assets/loading.svg';
+import Blank from './../../hoc/Layouts/Blank';
 
-import Blank from '../../hoc/layouts/Blank';
-
-import config from '../../../server/config';
 import axios from 'axios';
 
 class Register extends Component {
@@ -172,12 +170,12 @@ class Register extends Component {
 
 
         let webAuth = new auth0.WebAuth({
-            domain: AUTH_CONFIG.domain,
-            clientID: AUTH_CONFIG.clientId,
+            domain: process.env.AUTH_DOMAIN,
+            clientID: process.env.AUTH_CLIENT_ID,
         });
 
         webAuth.signup({
-            connection: AUTH_CONFIG.connection,
+            connection: process.env.AUTH_CONNECTION,
             email: this.state.registerForm['email'].value,
             password: this.state.registerForm['password'].value,
             username: this.state.registerForm['username'].value,
@@ -202,16 +200,16 @@ class Register extends Component {
         setTimeout( function() {
             formData.auth0Id = authResponseData.Id;
 
-            axios.post(config.localPath + '/register', formData)
+            axios.post('/api/register', formData)
                 .then(response => {
                     webAuth.redirect.loginWithCredentials({
-                        connection: AUTH_CONFIG.connection,
+                        connection: process.env.AUTH_CONNECTION,
                         username: formData.email,
                         password: formData.password,
-                        audience: AUTH_CONFIG.audience,
-                        responseType: AUTH_CONFIG.responseType,
-                        scope: AUTH_CONFIG.scope,
-                        redirectUri: AUTH_CONFIG.loginCallbackUrl,
+                        audience: process.env.AUTH_AUDIENCE,
+                        responseType: process.env.AUTH_RESPONSE_TYPE,
+                        scope: process.env.AUTH_SCOPE,
+                        redirectUri: process.env.AUTH_REDIRECT_URI
 
                     });
                 })

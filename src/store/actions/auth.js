@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
-import config from '../../../server/config';
+// import config from '../../../server/config';
 import setAuthToken from '../utils/setAuthToken';
 let jwtDecode = require('jwt-decode');
 import Auth from '../../Auth/Auth.js';
@@ -92,7 +92,7 @@ export const auth = (email) => {
             returnSecureToken: true
         };
 
-        axios.post('/signin', authData)
+        axios.post('/api/signin', authData)
             .then(response => {
 
                 const token = response.data.token;

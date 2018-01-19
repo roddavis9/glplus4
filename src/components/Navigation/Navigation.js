@@ -4,7 +4,7 @@ import {Link, NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
-import Aux from '../../hoc/Aux/Aux'
+import Aux from './../../hoc/Aux/Aux'
 import './Navigation.css';
 
 class Navigation extends Component {

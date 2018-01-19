@@ -3,16 +3,16 @@ import {AgGridReact} from "ag-grid-react";
 
 import { connect } from 'react-redux';
 import { Link, Location } from 'react-router-dom';
-import Auth from '../../Auth/Auth.js';
+import Auth from './../../Auth/Auth.js';
 
-import config from '../../../server/config';
+import config from './../../../server/config';
 import axios from 'axios';
 
-import Aux from '../../hoc/Aux/Aux';
-import Blank from '../../hoc/layouts/Blank';
+import Aux from './../../hoc/Aux/Aux';
+import Blank from './../../hoc/Layouts/Blank';
 //import WalmartCategory from './walmartCategory';
 
-import * as actions from '../../store/actions/index';
+import * as actions from './../../store/actions/index';
 
 class Admin_WalmartCategories extends Component {
     constructor(props) {

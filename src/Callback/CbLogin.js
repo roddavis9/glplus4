@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import loading from '../assets/loading.svg';
 import Auth from '../Auth/Auth.js';
-import Blank from '../hoc/layouts/Blank';
+import Blank from '../hoc/Layouts/Blank';
 import { connect } from 'react-redux';
 
 

@@ -9,6 +9,7 @@ const compression = require('compression');
 const logger = require('morgan');
 const serverConfig = require('./server/config');
 
+
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
@@ -52,8 +53,9 @@ app.use(cookieParser());
 app.use(compression());
 app.use(logger('dev'));
 app.use(cors());
-app.use(express.static(path.join(__dirname, './dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
+/*
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Credentials', 'false');
@@ -62,12 +64,15 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, HEAD, PATCH, DELETE, OPTIONS, PUT');
     next();
 });
-
+*/
 app.use('/api/signin', authRoutes);
 app.use('/api/categories', categoriesRoutes);
 app.use('/api/register', userRoutes);
 
-app.use('/', appRoutes);
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 
 app.use((err, req, res, next) => {

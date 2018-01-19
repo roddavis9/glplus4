@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Aux from '../../hoc/Aux/Aux';
-import Navigation from '../../components/Navigation/Navigation';
-import Progress from '../../components/common/Progress';
-import TopHeader from '../../components/common/TopHeader';
+import Aux from './../../hoc/Aux/Aux';
+import Navigation from './../../components/Navigation/Navigation';
+import Progress from './../../components/Common/Progress';
+import TopHeader from './../../components/Common/TopHeader';
 
 import classes from './Layout.css';
 

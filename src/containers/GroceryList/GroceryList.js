@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 
-import Input from '../../components/common/UI/Input/Input';
-import GroceryListHeader from '../../components/GroceryList/GroceryListHeader/GroceryListHeader';
-import GroceryListBody from '../../components/GroceryList/GroceryListBody/GroceryListBody';
-import Modal from '../../components/Common/UI/Modal/Modal';
+import Input from './../../components/Common/UI/Input/Input';
+import GroceryListHeader from './../../components/GroceryList/GroceryListHeader/GroceryListHeader';
+import GroceryListBody from './../../components/GroceryList/GroceryListBody/GroceryListBody';
+import Modal from './../../components/Common/UI/Modal/Modal';
 
-import Aux from '../../hoc/Aux/Aux';
+import Aux from './../../hoc/Aux/Aux';
 
 
 class GroceryList extends Component {
