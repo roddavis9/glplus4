@@ -3,13 +3,15 @@ import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth_variables';
 
 export default class Auth {
+    requestedScopes = 'openid profile read:messages write:messages';
+
     auth0 = new auth0.WebAuth({
         domain: AUTH_CONFIG.domain,
         clientID: AUTH_CONFIG.clientId,
-        redirectUri: AUTH_CONFIG.loginCallbackUrl,
+        // redirectUri: AUTH_CONFIG.loginCallbackUrl,
         audience: AUTH_CONFIG.audience,
-        responseType: AUTH_CONFIG.responseType,
-        scope: AUTH_CONFIG.scope
+        responseType: 'token id_token',
+        scope: this.requestedScopes
     });
 
 
@@ -30,7 +32,7 @@ export default class Auth {
                 this.setSession(authResult);
                 // console.log('authResult', authResult);
             } else if (err) {
-                history.replace('/');
+//
                 console.log('error is here', err);
                 alert(`Error: ${err.error}. Check the console for further details.`);
             }

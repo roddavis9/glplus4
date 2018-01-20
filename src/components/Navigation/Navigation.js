@@ -84,7 +84,9 @@ class Navigation extends Component {
                     <li>
                         <NavLink to="/settings"><i className="fa fa-cogs fa-lg"></i> <span className="nav-label">Settings</span></NavLink>
                     </li>
-
+                    <li>
+                        <NavLink to="/admin-walmart-categories"><i className="fa fa-cogs fa-lg"></i> <span className="nav-label">Settings 2</span></NavLink>
+                    </li>
 
                 </ul>
                 </div>

@@ -13,11 +13,9 @@ let jwtDecode = require('jwt-decode');
 
 class CbLogin extends Component {
 
-
-
     componentWillMount() {
 
-        console.log('componentWillMount() -- CbLogin.js');
+//        console.log('componentWillMount() -- CbLogin.js');
 
         const auth = new Auth();
         auth.handleAuthentication();
@@ -94,5 +92,5 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CbLogin);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CbLogin));
 

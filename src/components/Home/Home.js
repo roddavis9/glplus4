@@ -43,7 +43,7 @@ class Home extends Component {
         return (
             <Layout>
                 <div className={classes.homeContainer}>
-                    <GroceryList></GroceryList>
+                   <GroceryList></GroceryList>
                 </div>
             </Layout>
 

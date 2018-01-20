@@ -9,6 +9,17 @@ import Blank from './../../hoc/Layouts/Blank';
 
 class Landing extends Component {
 
+    constructor(props) {
+        super(props);
+
+        if (/access_token|state|id_token|error/.test(location.hash)) {
+//            console.log('finally', location.hash);
+            this.props.history.replace("/cblogin" + location.hash);
+        }
+
+
+    }
+
     render() {
         return (
             <Blank>
