@@ -1,5 +1,5 @@
 export const AUTH_CONFIG = {
-
+    // for dev use: loginCallbackUrl: 'http://localhost:3000',
     // for production use: loginCallbackUrl: 'http://www.grocerylistplus.com',
 
     domain: 'glplus.auth0.com',

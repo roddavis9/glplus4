@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, withRouter, Redirect } from 'react-router
 import { connect } from 'react-redux';
 
 
-
+import Layout from './components/Layouts/Layout';
 import Home from './components/Home/Home';
 import Friends from './components/Friends/Friends';
 import Landing from './components/Landing/Landing';

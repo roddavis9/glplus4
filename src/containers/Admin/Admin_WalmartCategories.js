@@ -1,31 +1,21 @@
 import React, {Component} from 'react';
-import {AgGridReact} from "ag-grid-react";
 
 import { connect } from 'react-redux';
-import { Link, Location } from 'react-router-dom';
-import Auth from './../../Auth/Auth.js';
+import { Link, Location, withRouter } from 'react-router-dom';
 
-import config from './../../../server/config';
-import axios from 'axios';
-
-import Aux from './../../hoc/Aux/Aux';
+import Layout from './../../components/Layouts/Layout';
 import Blank from './../../hoc/Layouts/Blank';
-//import WalmartCategory from './walmartCategory';
+import Aux from './../../hoc/Aux/Aux';
+import WalmartCategory from './walmartCategory';
+import classes from './Walmart.css';
 
 import * as actions from './../../store/actions/index';
 
 class Admin_WalmartCategories extends Component {
+
+
     constructor(props) {
         super(props);
-
-
-
-
-        this.state = {
-            categoryArray: [],
-            totalNumCats: 0,
-            temp: {}
-        };
 
         this.props.getAllCategories();
 
@@ -33,9 +23,19 @@ class Admin_WalmartCategories extends Component {
 
     componentWillMount() {
 
+
+
+
+
+
     }
 
     componentDidMount() {
+
+      //  console.log('test',this.props);
+
+        // this.setState({categoryArray: this.props.getAllCategories()});
+
 
     }
 
@@ -45,41 +45,38 @@ class Admin_WalmartCategories extends Component {
 
     };
 
-    render() {
 
-        const WalmartCategory = ({data}) => {
-            return (
-                <Aux key={data.id}>
-                    {data.map(info => {
-                        return (
-                            <div key={info.id}>
-                                <div style={{padding:'10px 0 5px 25px'}}>
-                                    <input type="checkbox" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{info.name} -- {info.id}
-                                {info.children && <WalmartCategory data={info.children} />}
-                                </div>
-                            </div>
-                        );
-                    })}
-                </Aux>
-            );
-        };
+
+    render() {
+        let walmartComponent = '';
+
+        //console.log('this.props.allCategories',this.props.allCategories);
+
+        if (this.props.allCategories.length > 0) {
+            walmartComponent = (
+                <WalmartCategory categoriesArray={this.props.allCategories}/>
+            )
+        }
 
         return (
-            <Blank>
-                <form className="m-t" role="form" onSubmit={this.submitHandler}>
-                    <WalmartCategory data={this.state.categoryArray}/>
-                </form>
+            <Layout>
+                <Aux style={{backgroundColor:'#fff !important', background:'none !important', backgroundImage:''}}>
+                <div>
+                    <form className="m-t" role="form" onSubmit={this.submitHandler}>
+                        {walmartComponent}
+                    </form>
 
+                </div>
+                </Aux>
 
-            </Blank>
+            </Layout>
         )
     }
 }
 
 const mapStateToProps = state => {
-
     return {
-        allCategories: state.walmartCategory.allCategories,
+        allCategories: state.walmart.allCategories,
         hasProfile: state.auth.hasProfile,
         isAuthenticated: state.auth.isAuthenticated,
         user: state.auth.user
@@ -93,6 +90,6 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Admin_WalmartCategories);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Admin_WalmartCategories));
 
 

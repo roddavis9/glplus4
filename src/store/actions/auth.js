@@ -92,7 +92,7 @@ export const auth = (email) => {
             returnSecureToken: true
         };
 
-        axios.post('/api/signin', authData)
+        axios.post('http://localhost:8080/api/signin', authData)
             .then(response => {
 
                 const token = response.data.token;

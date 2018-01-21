@@ -3,9 +3,32 @@ import PropTypes from 'prop-types';
 import Aux from '../../../hoc/Aux/Aux';
 
 import classes from './GroceryListItem.css';
+import Input from './../../Common/UI/Input/Input';
+
 
 class GroceryListItem extends Component {
+
+    state = {
+        itemForm: {
+            checkbox: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'checkbox'
+                },
+                value: '',
+                valid: true,
+                touched: false
+
+            }
+        },
+        formIsValid: false,
+        loading: false
+    };
+
+
     render() {
+    console.log('this.props.itemData', this.props.itemData);
+
         let listItem = null;
 
         let categories = this.props.itemData.categories.map(category => {
@@ -14,11 +37,27 @@ class GroceryListItem extends Component {
 
         let itemTotalPrice = (this.props.itemData.quantity * this.props.itemData.price_avg).toFixed(2);
 
+        const formElementsArray = [];
+        for ( let key in this.state.loginForm ) {
+            formElementsArray.push( {
+                id: key,
+                config: this.state.loginForm[key]
+            } );
+        }
+
+
+
         let itemDisplay = (
             <Aux>
                 <div className="row">
                     <div className="col-xs-1">
-                        <input type="checkbox" id={this.props.itemData.itemId} value={this.props.itemData.itemId}/>
+                        <Input
+                            key={this.props.itemData.itemId}
+                            elementType='input'
+                            elementConfig={this.state.itemForm.checkbox.elementConfig.type}
+                            value={this.props.itemData.itemId}
+
+                            changed={( event ) => this.inputChangedHandler( event, this.props.itemData.itemId )} />
                     </div>
                     <div className="col-xs-1">
                         <input

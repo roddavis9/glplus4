@@ -16,7 +16,7 @@ const input = ( props ) => {
                 className="form-control"
                 {...props.elementConfig}
                 value={props.value}
-                onChange={props.changed} />
+                onChange={props.changed} />;
             break;
         case ( 'input' ):
             inputElement = <input

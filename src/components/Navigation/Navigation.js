@@ -49,10 +49,13 @@ class Navigation extends Component {
                         */}
                     </li>
                     <li>
+                        <NavLink to="/coupons"><i className="fa fa-money fa-lg"></i> <span className="nav-label">Coupons</span></NavLink>
+                    </li>
+                    <li>
                         <NavLink to="/friends"><i className="fa fa-user fa-lg"></i> <span className="nav-label">Friends</span></NavLink>
                     </li>
                     <li>
-                        <NavLink to="/glists"><i className="fa fa-files-o fa-lg"></i> <span className="nav-label">Grocery Lists</span></NavLink>
+                        <NavLink to="/glists"><i className="fa fa-shopping-cart fa-lg"></i> <span className="nav-label">Grocery Lists</span></NavLink>
                     </li>
                     <li>
                         <NavLink to="/groups"><i className="fa fa-users fa-lg"></i> <span className="nav-label">Groups</span></NavLink>

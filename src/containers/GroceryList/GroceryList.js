@@ -137,7 +137,8 @@ class GroceryList extends Component {
                         />
                     </div>
                     <div className="panel-body">
-                        <button type="button" onClick={() => this.addItemHandler('123456')}>test</button>
+                        {/* <button type="button" onClick={() => this.addItemHandler('123456')}>test</button>*/}
+
                         <GroceryListBody
                             itemList={this.state.list.listItems}
                             itemAdded={this.addItemHandler}

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Aux from './../../hoc/Aux/Aux';
 import Navigation from './../../components/Navigation/Navigation';
-import Progress from './../../components/Common/Progress';
+import Progress from './../../components/Common/Progress/Progress';
 import TopHeader from './../../components/Common/TopHeader';
 
 import classes from './Layout.css';

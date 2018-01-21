@@ -89,7 +89,7 @@ export default class Auth {
         localStorage.removeItem('glp_token');
         localStorage.removeItem('auth0.ssodata');
         // navigate to the home route
-        history.replace('/');
+        history.push('/');
     }
 
     isAuthenticated() {

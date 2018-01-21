@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Location } from 'react-router-dom';
-import Progress from './../../components/Common/Progress';
+import Progress from './../../components/Common/Progress/Progress';
 import './Landing.css';
 
 import Auth from './../../Auth/Auth.js';
@@ -12,12 +12,10 @@ class Landing extends Component {
     constructor(props) {
         super(props);
 
+        // this is needed because auth0 can not redirect to /cblogin and display page
         if (/access_token|state|id_token|error/.test(location.hash)) {
-//            console.log('finally', location.hash);
             this.props.history.replace("/cblogin" + location.hash);
         }
-
-
     }
 
     render() {

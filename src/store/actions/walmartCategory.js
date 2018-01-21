@@ -10,18 +10,42 @@ const authService = new Auth();
 
 export const walmartGetAllCategories = () => {
     return dispatch => {
+/*
+        axios({
+            baseURL: 'http://api.walmartlabs.com',
+            url: '/v1/taxonomy',
+            method: 'get',
+            header: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            params: {
+                apiKey: 'ntuy6v466fwhpxftt2dve4qm',
+                format: 'json'
+            }
+        }).then(response => {
+            console.log(response);
 
-        axios.get('http://api.walmartlabs.com/v1/taxonomy?apiKey=' + config.walmartApiKey + '&format=json', cors())
-            .then(response => {
-                console.log(response);
+            dispatch(walmartGetAllSuccess(response.data.categories));
 
-                dispatch(walmartGetAllSuccess(response.data.categories));
-
-            })
+        })
             .catch(error => {
                 console.log('**** walmart taxonomy request failed', error.response.data.error);
 
+        });
+*/
+
+        axios.get('./server/mock-data/sampleWalmartCategories.json')
+            .then(response => {
+                dispatch(walmartGetAllSuccess(response.data.categories));
+            })
+            .catch(error => {
+                console.log('**** walmart taxonomy request failed', error.response.data.error);
             });
+
     }
 
 
@@ -29,7 +53,7 @@ export const walmartGetAllCategories = () => {
 
 export const walmartGetAllSuccess = (data) => {
 
-    console.log('walmart categories array', data);
+    // console.log('walmart categories array -- in action', data);
 
     return {
         type: actionTypes.WALMART_GET_ALL_CATEGORIES,

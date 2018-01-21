@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
 import { smoothlyMenu } from '../Layouts/Helpers';
@@ -43,4 +44,4 @@ class TopHeader extends React.Component {
     }
 }
 
-export default TopHeader
+export default withRouter(TopHeader);
