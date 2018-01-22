@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import Input from './../../components/Common/UI/Input/Input';
 import GroceryListHeader from './../../components/GroceryList/GroceryListHeader/GroceryListHeader';
@@ -7,14 +8,9 @@ import Modal from './../../components/Common/UI/Modal/Modal';
 
 import Aux from './../../hoc/Aux/Aux';
 
+import * as actions from './../../store/actions/index';
 
 class GroceryList extends Component {
-
-    // old way of doing state
-    // constructor(props) {
-    //    super(props);
-    //    this.state = {...};
-    // }
 
     state = {
         list: {
@@ -91,38 +87,12 @@ class GroceryList extends Component {
 
     addItemHandler = (itemId) => {
         console.log('addItemHandler loaded', this.state);
-        let currentItem = this.state.list.listItems
-            .filter((item) => { return item.itemId === itemId })
-            .map()
-
-        console.log('currentItem', currentItem);
-
-        const oldQuantity = currentItem[0].quantity;
-
-        console.log(oldQuantity);
-/*
-        const updatedQuantity = oldQuantity + 1;
-        const updatedItem = {
-            ...currentItem[0]
-        };
-        updatedItem.quantity = updatedQuantity;
-        console.log('updatedQuantity', updatedQuantity);
-        console.log('updatedItem', updatedItem);
-
-        let testQuantity = updatedQuantity;
-
-
-        this.setState((state) => ({
-            list: {...this.state.list, listItems: {...this.state.list.listItems, quantity: state.list.listItems.quantity + 1}}
-        }));
-
-*/
-        console.log('state loaded', this.state);
 
     };
 
     render() {
         console.log('list loaded');
+
         return (
             <Aux>
                 <Modal/>
@@ -132,7 +102,7 @@ class GroceryList extends Component {
                             listId={this.state.list._id}
                             listName={this.state.list.listName}
                             listGroupName={this.state.list.groupName}
-                            lastLastUpdated={this.state.list.lastUpdated}
+                            listLastUpdated={this.state.list.lastUpdated}
                             listCreated={this.state.list.dateCreated}
                         />
                     </div>
@@ -142,6 +112,7 @@ class GroceryList extends Component {
                         <GroceryListBody
                             itemList={this.state.list.listItems}
                             itemAdded={this.addItemHandler}
+                            listEditMode={this.props.listEditMode}
 
                         />
                     </div>
@@ -155,5 +126,23 @@ class GroceryList extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        hasProfile: state.auth.hasProfile,
+        isAuthenticated: state.auth.isAuthenticated,
+        user: state.auth.user,
+        listEditMode: state.common.listEditMode
+    }
+};
 
-export default GroceryList;
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email) => dispatch(actions.auth(email)),
+        onCheckTimeout: () => dispatch(actions.checkAuthTimeout()),
+        onSetProfile: () => dispatch(actions.authSetProfile()),
+        getListEditMode: () => dispatch(actions.getListEditMode())
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(GroceryList);

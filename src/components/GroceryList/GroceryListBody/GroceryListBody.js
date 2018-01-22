@@ -13,6 +13,7 @@ class GroceryListBody extends Component {
                 <div className="row" key={item.itemId + index}>
                     <GroceryListItem
                         itemData={item}
+                        listEditMode={this.props.listEditMode}
                         addItem={() => this.props.itemAdded(item.itemId)}
                     />
                 </div>
@@ -37,6 +38,7 @@ class GroceryListBody extends Component {
 
 GroceryListBody.propTypes = {
     itemList: PropTypes.array.isRequired,
+    listEditMode: PropTypes.bool,
     itemAdded: PropTypes.func
 };
 

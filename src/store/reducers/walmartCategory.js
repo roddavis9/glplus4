@@ -8,7 +8,7 @@ const initialState = {
 
 const walmartGetAllCategories = (state, action) => {
 
-    return updateObject(...state, { allCategories: action.allCategories });
+    return updateObject(state, { allCategories: action.allCategories });
 };
 
 const walmartCategoryReducer = (state = initialState, action) => {

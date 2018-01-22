@@ -15,6 +15,7 @@ import setAuthToken from './store/utils/setAuthToken';
 
 import categoryReducer from './store/reducers/categoryReducer';
 import authReducer from './store/reducers/auth';
+import commonReducer from './store/reducers/commonReducer';
 
 
 import { IntlProvider } from 'react-intl';
@@ -39,7 +40,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    walmart: walmartCategoryReducer
+    walmart: walmartCategoryReducer,
+    common: commonReducer
 });
 
 const logger = store => {
