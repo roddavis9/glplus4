@@ -2,15 +2,17 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link, Location } from 'react-router-dom';
 import Auth from './../../Auth/Auth.js';
-const serverConfig = require('dotenv').config();
+import { AUTH_CONFIG } from './../../Auth/auth_variables';
 import history from './../../history';
 
 
 import { validationRules } from './../../components/Common/validationRules';
 import Input from './../../components/Common/UI/Input/Input';
 import loading from './../../assets/loading.svg';
+
 import Blank from './../../hoc/Layouts/Blank';
 
+import config from './../../../server/config';
 import axios from 'axios';
 
 class Register extends Component {
@@ -170,12 +172,12 @@ class Register extends Component {
 
 
         let webAuth = new auth0.WebAuth({
-            domain: process.env.AUTH_DOMAIN,
-            clientID: process.env.AUTH_CLIENT_ID,
+            domain: AUTH_CONFIG.domain,
+            clientID: AUTH_CONFIG.clientId,
         });
 
         webAuth.signup({
-            connection: process.env.AUTH_CONNECTION,
+            connection: AUTH_CONFIG.connection,
             email: this.state.registerForm['email'].value,
             password: this.state.registerForm['password'].value,
             username: this.state.registerForm['username'].value,
@@ -203,13 +205,13 @@ class Register extends Component {
             axios.post('/api/register', formData)
                 .then(response => {
                     webAuth.redirect.loginWithCredentials({
-                        connection: process.env.AUTH_CONNECTION,
+                        connection: AUTH_CONFIG.connection,
                         username: formData.email,
                         password: formData.password,
-                        audience: process.env.AUTH_AUDIENCE,
-                        responseType: process.env.AUTH_RESPONSE_TYPE,
-                        scope: process.env.AUTH_SCOPE,
-                        redirectUri: process.env.AUTH_REDIRECT_URI
+                        audience: AUTH_CONFIG.audience,
+                        responseType: AUTH_CONFIG.responseType,
+                        scope: AUTH_CONFIG.scope,
+                        redirectUri: AUTH_CONFIG.loginCallbackUrl,
 
                     });
                 })

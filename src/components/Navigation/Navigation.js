@@ -76,6 +76,9 @@ class Navigation extends Component {
                         <NavLink to="/recipes"><i className="fa fa-newspaper-o fa-lg"></i> <span className="nav-label">Recipes</span></NavLink>
                     </li>
                     <li>
+                        <NavLink to=""><i className="fa fa-newspaper-o fa-lg"></i> <span className="nav-label">Related Items *</span></NavLink>
+                    </li>
+                    <li>
                         <NavLink to="/reports"><i className="fa fa-line-chart fa-lg"></i> <span className="nav-label">Reports</span></NavLink>
                     </li>
                     <li>

@@ -16,6 +16,8 @@ import setAuthToken from './store/utils/setAuthToken';
 import categoryReducer from './store/reducers/categoryReducer';
 import authReducer from './store/reducers/auth';
 import commonReducer from './store/reducers/commonReducer';
+import walmartCategoryReducer from "./store/reducers/walmartCategory";
+import groceryListReducer from "./store/reducers/groceryListReducer";
 
 
 import { IntlProvider } from 'react-intl';
@@ -32,7 +34,6 @@ import './index.css'
 import './../node_modules/bootstrap/dist/css/bootstrap.css'
 import './../node_modules/font-awesome/css/font-awesome.css'
 import './../node_modules/animate.css/animate.min.css'
-import walmartCategoryReducer from "./store/reducers/walmartCategory";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -41,7 +42,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
     auth: authReducer,
     walmart: walmartCategoryReducer,
-    common: commonReducer
+    common: commonReducer,
+    grocerylist: groceryListReducer
 });
 
 const logger = store => {
